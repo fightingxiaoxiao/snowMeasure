@@ -26,7 +26,7 @@ def write(filename, x, y):
             f.write(str(x[i]) + ',' + str(y[i]) + '\n')
 
 
-path = 'L300/8.5mps'
+path = 'L300/8.5mps/'
 files = [f for f in listdir(path) if isfile(join(path, f))]
 filename = None
 for f in files:
