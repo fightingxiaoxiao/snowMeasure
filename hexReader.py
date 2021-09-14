@@ -2,6 +2,8 @@ from datetime import datetime, date, time
 import binascii
 
 import matplotlib.pyplot as plt
+from os import listdir
+from os.path import isfile, join
 
 
 def hexRead(filename):
@@ -23,7 +25,13 @@ def write(filename, x, y):
         for i in range(len(x)):
             f.write(str(x[i]) + ',' + str(y[i]) + '\n')
 
-filename = 'L300/8.5mps/SaveWindows2021_9_12_16-54-07.TXT'
+
+path = 'L300/8.5mps'
+files = [f for f in listdir(path) if isfile(join(path, f))]
+filename = None
+for f in files:
+    if f[-4:] == '.TXT':
+        filename = path + '/' + f
 times, distances = hexRead(filename)
 
 times_align = []
@@ -45,14 +53,14 @@ for i in range(len(times_align)):
 x_samples, y_samples = [], []
 x_tmp, y_tmp = [], []
 
-for i in range(len(x)-1):
+for i in range(len(x) - 1):
     x_tmp.append(x[i])
     y_tmp.append(y[i])
-    if x[i+1] -x[i] > 10:
+    if x[i + 1] - x[i] > 10:
         x_samples.append(x_tmp)
         y_samples.append(y_tmp)
-        x_tmp, y_tmp=[], []
-write(filename[:-4]+'.csv', x, y)
+        x_tmp, y_tmp = [], []
+write(filename[:-4] + '.csv', x, y)
 count = 0
 
 for x, y in zip(x_samples, y_samples):
@@ -72,4 +80,3 @@ for x, y in zip(x_samples, y_samples):
 
 plt.legend()
 plt.show()
-
