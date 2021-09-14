@@ -23,8 +23,8 @@ def write(filename, x, y):
         for i in range(len(x)):
             f.write(str(x[i]) + ',' + str(y[i]) + '\n')
 
-
-times, distances = hexRead('L300/8.5mps/SaveWindows2021_9_12_16-54-07.TXT')
+filename = 'L300/8.5mps/SaveWindows2021_9_12_16-54-07.TXT'
+times, distances = hexRead(filename)
 
 times_align = []
 for t in times:
@@ -36,11 +36,40 @@ removeIndex = []
 x = []
 y = []
 for i in range(len(times_align)):
-    if distances[i] < 1.8 and distances[i] > 0.6:
+    if distances[i] < 1.136 and distances[i] > 0.6:
         x.append(times_align[i])
         y.append(distances[i])
 
-write('test.csv', x, y)
-plt.plot(x, y)
+#plt.plot(x, y)
 
+x_samples, y_samples = [], []
+x_tmp, y_tmp = [], []
+
+for i in range(len(x)-1):
+    x_tmp.append(x[i])
+    y_tmp.append(y[i])
+    if x[i+1] -x[i] > 10:
+        x_samples.append(x_tmp)
+        y_samples.append(y_tmp)
+        x_tmp, y_tmp=[], []
+write(filename[:-4]+'.csv', x, y)
+count = 0
+
+for x, y in zip(x_samples, y_samples):
+    if count % 2 == 1:
+        reversed(x)
+        reversed(y)
+        start = x[0]
+        for i in range(len(x)):
+            x[i] = x[i] - start
+        #plt.plot(x, y)
+    else:
+        start = x[0]
+        for i in range(len(x)):
+            x[i] = x[i] - start
+        plt.plot(x, y, label=str(count))
+    count += 1
+
+plt.legend()
 plt.show()
+
