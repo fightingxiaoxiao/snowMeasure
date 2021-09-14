@@ -56,7 +56,7 @@ x_tmp, y_tmp = [], []
 for i in range(len(x) - 1):
     x_tmp.append(x[i])
     y_tmp.append(y[i])
-    if x[i + 1] - x[i] > 10:
+    if x[i + 1] - x[i] > 2:
         x_samples.append(x_tmp)
         y_samples.append(y_tmp)
         x_tmp, y_tmp = [], []
