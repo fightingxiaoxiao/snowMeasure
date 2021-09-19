@@ -16,6 +16,7 @@ def generateTime(keyList, startIndex, photoList, duration):
 
 
 today = '20210919'
+workDir = '/run/media/smilemax/Data/lzx'
 caseName = 'DH15_V40_FALL'
 fileExtendName = 'jpg'
 timeDuration = 900
@@ -27,8 +28,8 @@ password_ = 'admin'
 mobilePath = 'SDCard/DCIM/Camera'
 
 
-os.mkdir(caseName)
-os.chdir(caseName)
+os.mkdir(workDir + '/' + caseName)
+os.chdir(workDir + '/' + caseName)
 
 cnopts = pysftp.CnOpts()
 cnopts.hostkeys = None
