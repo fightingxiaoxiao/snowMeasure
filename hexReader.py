@@ -44,11 +44,22 @@ removeIndex = []
 x = []
 y = []
 for i in range(len(times_align)):
+    if distances[i] < 1.8 and distances[i] > 0.6:
+        x.append(times_align[i])
+        y.append(distances[i])
+
+plt.plot(x, y)
+plt.show()
+
+removeIndex = []
+x = []
+y = []
+for i in range(len(times_align)):
     if distances[i] < 1.136 and distances[i] > 0.6:
         x.append(times_align[i])
         y.append(distances[i])
 
-#plt.plot(x, y)
+
 
 x_samples, y_samples = [], []
 x_tmp, y_tmp = [], []
