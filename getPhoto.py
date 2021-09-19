@@ -16,8 +16,8 @@ def generateTime(keyList, startIndex, photoList, duration):
 
 
 today = '20210919'
-workDir = '/run/media/smilemax/Data/lzx'
-caseName = 'DH15_V40_FALL'
+workDir = '/run/media/smilemax/Data/lzx/image'
+caseName = 'DH15_V35_FALL'
 fileExtendName = 'jpg'
 timeDuration = 900
 
